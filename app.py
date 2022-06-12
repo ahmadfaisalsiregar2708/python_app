@@ -9,7 +9,7 @@ from sklearn import metrics
 from sklearn.cluster import KMeans
 
 # koneksi ke database	
-db_app = mysql.connector.connect(host="localhost", user="udi93xus_root", passwd="Qf@MFyj~p-NL", database="udi93xus_fishmap_v1_db")
+db_app = mysql.connector.connect(host="194.233.77.193", user="udi93xus_root", passwd="Qf@MFyj~p-NL", database="udi93xus_fishmap_v1_db")
 
 # css to inject contained in a string
 hide_dataframe_row_index = """
