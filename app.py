@@ -8,8 +8,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
 from sklearn.cluster import KMeans
 
-# koneksi ke database	
-db_app = mysql.connector.connect(host="194.233.77.193", user="udi93xus_root", passwd="Qf@MFyj~p-NL", database="udi93xus_fishmap_v1_db")
+# koneksi ke database	194.233.77.193
+# db_app = mysql.connector.connect(host="194.233.77.193", user="udi93xus_root", passwd="Qf@MFyj~p-NL", database="udi93xus_fishmap_v1_db")
 
 # css to inject contained in a string
 hide_dataframe_row_index = """
@@ -23,21 +23,20 @@ hide_dataframe_row_index = """
 st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
 # dataset
-dbcursor = db_app.cursor()
-dbcursor.execute("SELECT * FROM dokumen_file WHERE deleted_at IS NULL AND doc_active = '1' ")
-post_list = dbcursor.fetchall()
+# dbcursor = db_app.cursor()
+# dbcursor.execute("SELECT * FROM dokumen_file WHERE deleted_at IS NULL AND doc_active = '1' ")
+# post_list = dbcursor.fetchall()
 
 # read data
-data_klorofil = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[0][6])
-data_spl = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[1][6])
-data_tpl = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[2][6])
-data_arus = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[3][6])
+# data_klorofil = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[0][6])
+# data_spl = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[1][6])
+# data_tpl = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[2][6])
+# data_arus = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[3][6])
 
-# data_klorofil = pd.read_csv('data/dataklorofil.csv')
-# data_spl = pd.read_csv('data/dataspl.csv')
-# data_tpl = pd.read_csv('data/datatpl.csv')
-# data_arus = pd.read_csv('data/dataarus.csv')
-
+data_klorofil = pd.read_csv('data/dataklorofil.csv')
+data_spl = pd.read_csv('data/dataspl.csv')
+data_tpl = pd.read_csv('data/datatpl.csv')
+data_arus = pd.read_csv('data/dataarus.csv')
 
 # gabungkan dataset
 gabungan_klorofil_tpl = data_klorofil.append(data_tpl, ignore_index=True)
