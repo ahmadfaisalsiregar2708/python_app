@@ -188,6 +188,11 @@ plot = px.scatter(data_frame=df_6c,
                   color = 'cluster')
 st.plotly_chart(plot)
 
+df_6c.drop(df_6c.columns[df_6c.columns.str.contains('color',case = False)],axis = 1, inplace = True)
+silhouette_avg = metrics.silhouette_score(df_6c, df_6c['cluster'])
+"""##### Silhouette Coefficient for the above clustering:"""
+silhouette_avg
+
 # visualisasi data (map)
 """### Visualisasi Data (Map)"""
 fig = px.scatter_mapbox(df_6c, 
