@@ -4,6 +4,6 @@ pandas==1.4.2
 plotly_express==0.4.1
 scikit_learn==1.1.1
 streamlit==1.10.0
-mysql-connector==2.2.9
+mysql-connector
 
 
