@@ -33,11 +33,6 @@ data_spl = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[1][6])
 data_tpl = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[2][6])
 data_arus = pd.read_csv('http://ahmadfaisalsiregar.skom.id/' + post_list[3][6])
 
-# data_klorofil = pd.read_csv('data/dataklorofil.csv')
-# data_spl = pd.read_csv('data/dataspl.csv')
-# data_tpl = pd.read_csv('data/datatpl.csv')
-# data_arus = pd.read_csv('data/dataarus.csv')
-
 # gabungkan dataset
 gabungan_klorofil_tpl = data_klorofil.append(data_tpl, ignore_index=True)
 gabungan_klorofil_tpl_spl = gabungan_klorofil_tpl.append(data_spl, ignore_index=True)
@@ -75,12 +70,8 @@ ss = StandardScaler()
 df_scale= ss.fit_transform(df)
 df_scale = pd.DataFrame(df_scale,columns=df.columns)
 df_scale.to_csv("http://ahmadfaisalsiregar.skom.id/resource/doc/data/df_scale.csv", index=False)
-# df_scale.to_csv("data/df_scale.csv", index=False)
-
-"""### Hasil Clustering"""
 
 df_scaled = pd.read_csv("http://ahmadfaisalsiregar.skom.id/resource/doc/data/df_scale.csv")
-# df_scaled = pd.read_csv("data/df_scale.csv")
 df_6c = df_scaled
 df_6c['lat'] = df['latitude']
 df_6c['lon'] = df['longitude']
@@ -174,13 +165,17 @@ print(x6)
 # urutan cluster dengan klorofil tertinngi sampai yang terendah
 data_cluster = df_6c.sort_values('mean_klorofil', ascending=False)
 urutan_cluster = data_cluster.drop_duplicates(subset=['mean_klorofil'], keep='first')
+
+"""#### Daftar Cluster"""
 urutan_cluster[['cluster','mean_klorofil']]
+"""##### Catatan: Cluster dengan rata-rata klorofil tertinggi merupakan daerah dengan potensi ikan terbesar"""
+
 data = df_6c.drop_duplicates(
                   subset = ['longitude', 'latitude'],
                   keep = 'last').reset_index(drop = True)
 
-# visualisasi data (chart)
-"""### visualisasi data (chart)"""
+# visualisasi data 
+"""### Visualisasi Data (Chart)"""
 plot = px.scatter(data_frame=df_6c, 
                   x = df_6c['longitude'], 
                   y = df_6c['latitude'],                   
@@ -188,8 +183,7 @@ plot = px.scatter(data_frame=df_6c,
                   color = 'cluster')
 st.plotly_chart(plot)
 
-# visualisasi data (map)
-"""### Visualisasi Data (Map)"""
+"""### Peta Prediksi Daerah Penangkapan Ikan"""
 fig = px.scatter_mapbox(df_6c, 
                   lat = df_6c['lat'], 
                   lon = df_6c['lon'], 
