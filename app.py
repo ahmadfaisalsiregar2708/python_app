@@ -168,7 +168,7 @@ urutan_cluster = data_cluster.drop_duplicates(subset=['mean_klorofil'], keep='fi
 
 """#### Daftar Cluster"""
 urutan_cluster[['cluster','mean_klorofil']]
-"""##### Catatan: Cluster dengan rata-rata klorofil tertinggi merupakan daerah dengan potensi ikan terbesar"""
+"""###### Catatan: Cluster dengan rata-rata klorofil tertinggi merupakan daerah dengan potensi ikan terbesar"""
 
 data = df_6c.drop_duplicates(
                   subset = ['longitude', 'latitude'],
